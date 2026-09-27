@@ -1,0 +1,12 @@
+{
+  "name": "ai-generator-modul-deep-learning-online",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI Generator Modul Ajar Deep Learning dengan backend serverless.",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
