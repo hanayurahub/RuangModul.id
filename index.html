@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="AI Generator Modul Ajar Pembelajaran Mendalam">
+  <title>AI Generator Modul Ajar • Deep Learning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    :root{--cream:#f8f4e9;--cream2:#eee7d5;--sage:#a8bda5;--sage2:#dce8da;--sage3:#6f8b70;--ink:#344139;--muted:#748078;--white:#fff;--border:#dfe5dc;--shadow:0 18px 50px rgba(75,91,77,.12)}
+    *{box-sizing:border-box} body{margin:0;font-family:Poppins,sans-serif;color:var(--ink);background:radial-gradient(circle at 8% 8%,#dce8da66,transparent 25%),radial-gradient(circle at 92% 8%,#eee7d5aa,transparent 25%),var(--cream);min-height:100vh}
+    .wrap{width:min(1180px,calc(100% - 28px));margin:auto}.top{padding:32px 0 20px}.brand{display:flex;align-items:center;gap:14px}.logo{width:56px;height:56px;border-radius:18px;background:var(--sage);display:grid;place-items:center;font-size:28px;box-shadow:0 10px 25px #6f8b7033}.brand h1{margin:0;font-size:clamp(22px,4vw,32px);line-height:1.15}.brand p{margin:4px 0 0;color:var(--muted);font-size:12px}
+    .grid{display:grid;grid-template-columns:380px 1fr;gap:22px;padding-bottom:42px}.card{background:#ffffffe8;border:1px solid var(--border);border-radius:22px;padding:24px;box-shadow:var(--shadow);backdrop-filter:blur(10px)}
+    .title{font-size:18px;font-weight:700;margin:0 0 18px}.group{margin-bottom:17px}label{display:block;font-size:13px;font-weight:600;margin-bottom:7px}
+    input,select,textarea{width:100%;font:inherit;border:1px solid var(--border);border-radius:14px;background:#fbfcf9;color:var(--ink);outline:0}input,select{height:48px;padding:0 13px;font-size:13px}input:focus,select:focus,textarea:focus{border-color:var(--sage3);box-shadow:0 0 0 4px #a8bda52e}
+    .generate{width:100%;min-height:52px;border:0;border-radius:15px;background:var(--sage3);color:#fff;font-weight:700;cursor:pointer;box-shadow:0 10px 25px #6f8b7033}.generate:hover{background:#5e795f;transform:translateY(-1px)}.generate:disabled{opacity:.6;cursor:wait;transform:none}
+    .info{margin-top:18px;padding:14px;border-radius:15px;background:#f5f8f2;border:1px solid #e2eade}.info b{font-size:12px}.pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}.pill{padding:6px 10px;border-radius:99px;background:#fff;border:1px solid #dfe7dc;color:var(--sage3);font-size:10px;font-weight:600}
+    .outhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.status{font-size:10px;color:var(--muted);background:var(--cream);border-radius:99px;padding:7px 10px;white-space:nowrap}
+    textarea{min-height:610px;padding:18px;resize:vertical;line-height:1.65;font-size:12.5px}.empty{min-height:610px;border:2px dashed #dce5d9;border-radius:18px;display:grid;place-items:center;text-align:center;padding:28px;color:var(--muted)}.empty div{max-width:430px}.empty .emoji{font-size:52px}.empty h3{color:var(--ink);margin:10px 0 7px;font-size:17px}.empty p{font-size:12px;line-height:1.7;margin:0}
+    .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.secondary{min-height:46px;border:0;border-radius:13px;background:var(--sage2);color:var(--sage3);font-weight:700;cursor:pointer}.pdf{background:#eee8d9;color:#766b55}.secondary:hover{transform:translateY(-1px)}
+    footer{text-align:center;color:var(--muted);font-size:10px;padding:0 0 22px}
+    @media(max-width:850px){.grid{grid-template-columns:1fr}.wrap{width:min(100% - 18px,1180px)}textarea,.empty{min-height:500px}} @media(max-width:480px){.card{padding:18px;border-radius:18px}.actions{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header class="top"><div class="wrap"><div class="brand"><div class="logo">🧠</div><div><h1>AI Generator Modul Ajar</h1><p>Deep Learning • Mindful • Meaningful • Joyful</p></div></div></div></header>
+
+  <main class="wrap">
+    <div class="grid">
+      <section class="card">
+        <h2 class="title">✨ Buat Modul Ajar</h2>
+        <div class="group"><label for="topik">Topik Pembelajaran</label><input id="topik" maxlength="180" placeholder="Contoh: Siklus Air"></div>
+        <div class="group"><label for="usia">Usia / Jenjang</label><select id="usia"><option value="">Pilih usia / jenjang</option><option>PAUD / TK</option><option>Kelas 1 SD</option><option>Kelas 2 SD</option><option>Kelas 3 SD</option><option>Kelas 4 SD</option><option>Kelas 5 SD</option><option>Kelas 6 SD</option><option>SMP</option><option>SMA</option></select></div>
+        <div class="group"><label for="durasi">Durasi Pembelajaran</label><select id="durasi"><option value="">Pilih durasi</option><option>1 Pertemuan</option><option>1 Minggu</option></select></div>
+        <button class="generate" id="generateBtn">✨ Generate Modul dengan AI</button>
+        <div class="info"><b>Struktur Pembelajaran Mendalam</b><div class="pills"><span class="pill">Mindful</span><span class="pill">Meaningful</span><span class="pill">Joyful</span><span class="pill">Memahami</span><span class="pill">Mengaplikasi</span><span class="pill">Merefleksi</span></div></div>
+      </section>
+
+      <section class="card">
+        <div class="outhead"><h2 class="title" style="margin:0">📘 Hasil Modul Ajar</h2><div class="status" id="status">Siap digunakan</div></div>
+        <div id="output"><div class="empty"><div><div class="emoji">🌿</div><h3>Modul ajar akan muncul di sini</h3><p>Masukkan topik, pilih jenjang dan durasi, lalu klik Generate Modul dengan AI.</p></div></div></div>
+        <div class="actions" id="actions" hidden><button class="secondary" id="copyBtn">📋 Salin Teks</button><button class="secondary pdf" id="pdfBtn">📄 Download PDF</button></div>
+      </section>
+    </div>
+  </main>
+  <footer>AI Generator Modul Ajar • API key tersimpan di server, bukan di browser</footer>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const btn = $("generateBtn"), statusEl = $("status"), output = $("output"), actions = $("actions");
+
+function showError(message){
+  output.innerHTML = `<div class="empty"><div><div class="emoji">⚠️</div><h3>Gagal membuat modul</h3><p>${escapeHtml(message)}</p></div></div>`;
+  actions.hidden = true;
+}
+function escapeHtml(s){return String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+
+async function generateModule(){
+  const topik=$("topik").value.trim(), usia=$("usia").value, durasi=$("durasi").value;
+  if(!topik || !usia || !durasi){alert("Lengkapi topik, usia/jenjang, dan durasi.");return}
+  btn.disabled=true; btn.textContent="⏳ Membuat modul...";
+  statusEl.textContent="AI sedang bekerja...";
+  actions.hidden=true;
+  try{
+    const res=await fetch("/api/generate-module",{
+      method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({topik,usia,durasi})
+    });
+    const data=await res.json().catch(()=>({}));
+    if(!res.ok) throw new Error(data.error || "Permintaan gagal.");
+    output.innerHTML='<textarea id="moduleOutput" aria-label="Hasil modul ajar"></textarea>';
+    $("moduleOutput").value=data.text || "";
+    actions.hidden=false; statusEl.textContent="✓ Modul berhasil dibuat";
+  }catch(e){showError(e.message);statusEl.textContent="Terjadi kesalahan"}
+  finally{btn.disabled=false;btn.textContent="✨ Generate Modul dengan AI"}
+}
+
+btn.addEventListener("click",generateModule);
+$("topik").addEventListener("keydown",e=>{if(e.key==="Enter")generateModule()});
+
+$("copyBtn").addEventListener("click",async()=>{
+  const t=$("moduleOutput"); if(!t)return;
+  try{await navigator.clipboard.writeText(t.value);$("copyBtn").textContent="✓ Berhasil disalin";setTimeout(()=>$("copyBtn").textContent="📋 Salin Teks",1400)}
+  catch{t.select();document.execCommand("copy");alert("Teks berhasil disalin.")}
+});
+
+$("pdfBtn").addEventListener("click",()=>{
+  const t=$("moduleOutput"); if(!t || !t.value.trim()) return alert("Belum ada modul.");
+  const {jsPDF}=window.jspdf;
+  const pdf=new jsPDF({orientation:"portrait",unit:"mm",format:"a4"});
+  const margin=18, width=210, height=297, max=width-margin*2;
+  let y=20;
+  pdf.setFont("helvetica","bold");pdf.setFontSize(16);pdf.text("MODUL AJAR PEMBELAJARAN MENDALAM",margin,y);y+=8;
+  pdf.setFont("helvetica","normal");pdf.setFontSize(9);pdf.text("Mindful • Meaningful • Joyful",margin,y);y+=9;
+  pdf.setFontSize(9.5);
+  const lines=pdf.splitTextToSize(t.value,max);
+  for(const line of lines){if(y>height-16){pdf.addPage();y=18} pdf.text(line,margin,y);y+=5.2}
+  pdf.save("Modul-Ajar-Deep-Learning.pdf");
+});
+</script>
+</body>
+</html>
